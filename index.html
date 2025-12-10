@@ -3,21 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Martial Maurice DIATTA - Portfolio Développeur Full-Stack</title>
+    <title>Martial Maurice DIATTA | Développeur Full-Stack & Architecte Microservices</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: '#3b82f6',
-                        dark: '#1f2937',
-                        light: '#f9fafb'
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        },
+                        dark: '#0f172a',
+                        light: '#f8fafc'
                     },
                     fontFamily: {
-                        'inter': ['Inter', 'sans-serif']
+                        'jakarta': ['Plus Jakarta Sans', 'sans-serif']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
                     }
                 }
             }
@@ -26,300 +57,624 @@
     <style>
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 80px;
         }
+        
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
         }
-        .section-title {
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-glass {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .skill-bar {
             position: relative;
-            display: inline-block;
-            margin-bottom: 2rem;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
         }
-        .section-title::after {
+        
+        .skill-bar-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa);
+            transition: width 1.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline-item::before {
             content: '';
             position: absolute;
-            bottom: -8px;
             left: 0;
-            width: 50px;
-            height: 3px;
-            background-color: #3b82f6;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #3b82f6;
+            border: 3px solid white;
+            box-shadow: 0 0 0 4px #dbeafe;
         }
-        .card-hover {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        
+        .project-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+            transition: left 0.7s;
+        }
+        
+        .project-card:hover::before {
+            left: 100%;
+        }
+        
+        .tech-tag {
+            background: linear-gradient(135deg, #e0f2fe, #dbeafe);
+            border: 1px solid #bfdbfe;
+        }
+        
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #cbd5e1, transparent);
+            margin: 4rem auto;
+            max-width: 800px;
         }
     </style>
 </head>
-<body class="bg-light text-dark font-inter">
+<body class="text-gray-800 font-jakarta">
     <!-- Navigation -->
-    <nav class="sticky top-0 z-50 bg-white shadow-md py-4">
+    <nav class="fixed w-full z-50 py-4 bg-white/90 backdrop-blur-md shadow-sm">
         <div class="container mx-auto px-6 flex justify-between items-center">
-            <a href="#" class="text-xl font-bold text-primary">Martial Maurice DIATTA</a>
-            <div class="hidden md:flex space-x-8">
-                <a href="#accueil" class="hover:text-primary transition">Accueil</a>
-                <a href="#profil" class="hover:text-primary transition">Profil</a>
-                <a href="#competences" class="hover:text-primary transition">Compétences</a>
-                <a href="#projets" class="hover:text-primary transition">Projets</a>
-                <a href="#experience" class="hover:text-primary transition">Expérience</a>
-                <a href="#contact" class="hover:text-primary transition">Contact</a>
+            <div class="flex items-center space-x-2">
+                <div class="w-8 h-8 rounded-full gradient-bg flex items-center justify-center">
+                    <span class="text-white font-bold">MD</span>
+                </div>
+                <span class="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Martial DIATTA</span>
             </div>
-            <a href="cv%20emploi.pdf" target="_blank" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
-                <i class="fas fa-download mr-2"></i>Télécharger CV
-            </a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#accueil" class="font-medium hover:text-primary-600 transition-colors">Accueil</a>
+                <a href="#propos" class="font-medium hover:text-primary-600 transition-colors">À propos</a>
+                <a href="#competences" class="font-medium hover:text-primary-600 transition-colors">Compétences</a>
+                <a href="#projets" class="font-medium hover:text-primary-600 transition-colors">Projets</a>
+                <a href="#experience" class="font-medium hover:text-primary-600 transition-colors">Parcours</a>
+                <a href="#contact" class="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors">
+                    <i class="fas fa-paper-plane mr-2"></i>Contact
+                </a>
+            </div>
+            <button class="md:hidden text-gray-600">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="accueil" class="py-20 bg-gradient-to-r from-blue-50 to-white">
-        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center">
-            <div class="md:w-1/2 mb-10 md:mb-0">
-                <h1 class="text-4xl md:text-5xl font-bold mb-4">Martial Maurice DIATTA</h1>
-                <h2 class="text-2xl text-primary mb-6">Développeur Full-Stack & Architecte Microservices</h2>
-                <p class="text-gray-600 mb-8 text-lg">Je conçois des solutions logicielles performantes, évolutives et sécurisées, en adoptant les méthodes agiles. Passionné par les nouvelles technologies et les projets à fort impact.</p>
-                <div class="flex space-x-4">
-                    <a href="#contact" class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">Me contacter</a>
-                    <a href="#projets" class="border border-primary text-primary px-6 py-3 rounded-lg hover:bg-primary hover:text-white transition">Voir mes projets</a>
+    <section id="accueil" class="pt-24 pb-16 md:pt-32 md:pb-24 relative overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
+            <div class="absolute bottom-20 right-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style="animation-delay: 2s"></div>
+        </div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-12 lg:mb-0 animate-fade-in">
+                    <div class="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-800 mb-6">
+                        <span class="w-2 h-2 bg-blue-600 rounded-full mr-2"></span>
+                        <span class="text-sm font-medium">Développeur Full-Stack Disponible</span>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                        <span class="block">Martial Maurice</span>
+                        <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">DIATTA</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8 max-w-2xl">
+                        Architecte de solutions logicielles, spécialisé en microservices et développement web. Je transforme des idées en applications performantes, évolutives et sécurisées.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#contact" class="px-8 py-3 gradient-bg text-white rounded-lg font-medium hover:shadow-lg transition-shadow">
+                            <i class="fas fa-rocket mr-2"></i>Démarrer un projet
+                        </a>
+                        <a href="cv%20emploi.pdf" target="_blank" class="px-8 py-3 border-2 border-blue-600 text-blue-600 rounded-lg font-medium hover:bg-blue-50 transition-colors">
+                            <i class="fas fa-file-pdf mr-2"></i>Voir mon CV
+                        </a>
+                    </div>
+                    <div class="flex items-center mt-12 space-x-6">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white mr-3">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold">50+</p>
+                                <p class="text-sm text-gray-500">Projets réalisés</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center text-white mr-3">
+                                <i class="fas fa-microchip"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold">15+</p>
+                                <p class="text-sm text-gray-500">Technologies</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="md:w-1/2 flex justify-center">
-                <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-8 border-white shadow-2xl">
-                    <img src="profil.jpeg" alt="Martial Maurice DIATTA" class="w-full h-full object-cover">
+                <div class="lg:w-1/2 flex justify-center animate-slide-up" style="animation-delay: 0.3s">
+                    <div class="relative">
+                        <div class="w-72 h-72 md:w-96 md:h-96 rounded-2xl overflow-hidden border-8 border-white shadow-2xl">
+                            <img src="profil.jpeg" alt="Martial Maurice DIATTA" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-xl shadow-xl card-glass">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fas fa-laptop-code text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold">Full-Stack</p>
+                                    <p class="text-sm text-gray-500">Développeur</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute -top-6 -left-6 bg-white p-4 rounded-xl shadow-xl card-glass">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-blue-500 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fas fa-cloud text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold">Microservices</p>
+                                    <p class="text-sm text-gray-500">Architecte</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Profil Section -->
-    <section id="profil" class="py-16 bg-white">
+    <!-- À propos -->
+    <section id="propos" class="py-16">
         <div class="container mx-auto px-6">
-            <h2 class="section-title text-3xl font-bold">Profil</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div>
-                    <p class="text-gray-700 mb-6">Développeur full-stack passionné, avec une spécialisation en architecture microservices et développement web. Je maîtrise les technologies modernes frontend et backend pour créer des applications robustes et scalables.</p>
-                    <p class="text-gray-700 mb-6">Mon objectif est de contribuer à des projets innovants qui ont un impact réel, tout en continuant à apprendre et à évoluer dans l'écosystème du développement logiciel.</p>
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-map-marker-alt text-primary mr-3"></i>
-                        <span>Ziguinchor, Sénégal</span>
-                    </div>
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-envelope text-primary mr-3"></i>
-                        <span>martialmauricediatta@gmail.com</span>
-                    </div>
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-phone text-primary mr-3"></i>
-                        <span>+221 78 531 32 92</span>
-                    </div>
-                    <div class="flex items-center">
-                        <i class="fab fa-linkedin text-primary mr-3"></i>
-                        <a href="https://linkedin.com/martialmauricediatta" target="_blank" class="hover:text-primary">linkedin.com/martialmauricediatta</a>
+            <div class="text-center mb-16 animate-fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">À propos de moi</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Développeur passionné avec une expertise en création d'applications web modernes et architectures microservices</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="animate-slide-up">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <h3 class="text-2xl font-bold mb-6">Mon approche</h3>
+                        <p class="text-gray-600 mb-6">Je crois en un développement logiciel qui allie performance technique et valeur business. Chaque ligne de code doit servir un objectif clair et contribuer à créer une expérience utilisateur exceptionnelle.</p>
+                        <p class="text-gray-600 mb-8">Spécialisé dans l'architecture microservices, je conçois des systèmes modulaires qui peuvent évoluer avec les besoins de votre entreprise.</p>
+                        <div class="flex items-center">
+                            <div class="mr-4">
+                                <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center">
+                                    <i class="fas fa-bullseye text-white text-2xl"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="font-bold">Objectif</p>
+                                <p class="text-gray-600">Contribuer à des projets innovants à fort impact</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <h3 class="text-xl font-semibold mb-4">Langues</h3>
-                    <div class="mb-6">
-                        <div class="flex justify-between mb-1">
-                            <span>Français</span>
-                            <span>Natif</span>
+                <div class="animate-slide-up" style="animation-delay: 0.2s">
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-map-marker-alt text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Localisation</h4>
+                                <p class="text-gray-600">Ziguinchor, Sénégal</p>
+                            </div>
                         </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2">
-                            <div class="bg-primary h-2 rounded-full" style="width: 100%"></div>
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-envelope text-purple-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Email</h4>
+                                <p class="text-gray-600">martialmauricediatta@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-lg bg-green-100 flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-phone text-green-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Téléphone</h4>
+                                <p class="text-gray-600">+221 78 531 32 92</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-lg bg-red-100 flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fab fa-linkedin text-red-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">LinkedIn</h4>
+                                <p class="text-gray-600">linkedin.com/martialmauricediatta</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="mb-6">
-                        <div class="flex justify-between mb-1">
-                            <span>Anglais</span>
-                            <span>Intermediaire</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2">
-                            <div class="bg-primary h-2 rounded-full" style="width: 75%"></div>
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4">Centres d'intérêt</h3>
-                    <ul class="list-disc pl-5 text-gray-700">
-                        <li>Nouvelles technologies dans le développement logiciel</li>
-                        <li>Lecture de livres sur les nouvelles technologies</li>
-                        <li>Architecture microservices et DevOps</li>
-                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Compétences Section -->
-    <section id="competences" class="py-16 bg-gray-50">
+    <!-- Compétences -->
+    <section id="competences" class="py-16 bg-gradient-to-b from-white to-blue-50">
         <div class="container mx-auto px-6">
-            <h2 class="section-title text-3xl font-bold">Compétences Techniques</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Technologies web -->
-                <div class="bg-white p-6 rounded-xl shadow-md card-hover">
-                    <div class="text-primary text-3xl mb-4">
-                        <i class="fas fa-code"></i>
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Compétences Techniques</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Maîtrisant à la fois le frontend et le backend, je crée des solutions complètes et cohérentes</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow project-card">
+                    <div class="w-14 h-14 gradient-bg rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-code text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4">Technologies Web</h3>
-                    <ul class="space-y-2">
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>HTML & CSS</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Angular</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>React 18</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Tailwind CSS</li>
-                    </ul>
+                    <h3 class="text-xl font-bold mb-4">Frontend</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">React 18</span>
+                            <span class="text-blue-600 font-bold">95%</span>
+                        </div>
+                        <div class="skill-bar bg-gray-200">
+                            <div class="skill-bar-fill" style="width: 95%"></div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">Angular</span>
+                            <span class="text-blue-600 font-bold">85%</span>
+                        </div>
+                        <div class="skill-bar bg-gray-200">
+                            <div class="skill-bar-fill" style="width: 85%"></div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">Tailwind CSS</span>
+                            <span class="text-blue-600 font-bold">90%</span>
+                        </div>
+                        <div class="skill-bar bg-gray-200">
+                            <div class="skill-bar-fill" style="width: 90%"></div>
+                        </div>
+                    </div>
                 </div>
-                <!-- Backend & Bases de données -->
-                <div class="bg-white p-6 rounded-xl shadow-md card-hover">
-                    <div class="text-primary text-3xl mb-4">
-                        <i class="fas fa-server"></i>
+                
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow project-card">
+                    <div class="w-14 h-14 bg-gradient-to-r from-green-500 to-blue-500 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-server text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4">Backend & BD</h3>
-                    <ul class="space-y-2">
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Java / Spring Boot</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Python</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>MySQL</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>MongoDB</li>
-                    </ul>
+                    <h3 class="text-xl font-bold mb-4">Backend</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">Spring Boot</span>
+                            <span class="text-blue-600 font-bold">92%</span>
+                        </div>
+                        <div class="skill-bar bg-gray-200">
+                            <div class="skill-bar-fill" style="width: 92%"></div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">Python</span>
+                            <span class="text-blue-600 font-bold">80%</span>
+                        </div>
+                        <div class="skill-bar bg-gray-200">
+                            <div class="skill-bar-fill" style="width: 80%"></div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">Microservices</span>
+                            <span class="text-blue-600 font-bold">88%</span>
+                        </div>
+                        <div class="skill-bar bg-gray-200">
+                            <div class="skill-bar-fill" style="width: 88%"></div>
+                        </div>
+                    </div>
                 </div>
-                <!-- Outils -->
-                <div class="bg-white p-6 rounded-xl shadow-md card-hover">
-                    <div class="text-primary text-3xl mb-4">
-                        <i class="fas fa-tools"></i>
+                
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow project-card">
+                    <div class="w-14 h-14 bg-gradient-to-r from-yellow-500 to-red-500 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-database text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4">Outils & DevOps</h3>
-                    <ul class="space-y-2">
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Git, Docker, Jenkins</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>CI/CD, DevOps</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>OpenAPI, SonarQube</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Jira, Agile/Scrum</li>
-                    </ul>
+                    <h3 class="text-xl font-bold mb-4">Bases de données</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">MySQL</span>
+                            <span class="text-blue-600 font-bold">90%</span>
+                        </div>
+                        <div class="skill-bar bg-gray-200">
+                            <div class="skill-bar-fill" style="width: 90%"></div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">MongoDB</span>
+                            <span class="text-blue-600 font-bold">85%</span>
+                        </div>
+                        <div class="skill-bar bg-gray-200">
+                            <div class="skill-bar-fill" style="width: 85%"></div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">SQL</span>
+                            <span class="text-blue-600 font-bold">88%</span>
+                        </div>
+                        <div class="skill-bar bg-gray-200">
+                            <div class="skill-bar-fill" style="width: 88%"></div>
+                        </div>
+                    </div>
                 </div>
-                <!-- Méthodologies -->
-                <div class="bg-white p-6 rounded-xl shadow-md card-hover">
-                    <div class="text-primary text-3xl mb-4">
-                        <i class="fas fa-project-diagram"></i>
+                
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow project-card">
+                    <div class="w-14 h-14 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-tools text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4">Méthodologies</h3>
-                    <ul class="space-y-2">
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Architecture Microservices</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Développement Contract-first API</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Agile/Scrum</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Clean Code & Tests</li>
-                    </ul>
+                    <h3 class="text-xl font-bold mb-4">DevOps & Outils</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">Docker</span>
+                            <span class="text-blue-600 font-bold">87%</span>
+                        </div>
+                        <div class="skill-bar bg-gray-200">
+                            <div class="skill-bar-fill" style="width: 87%"></div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">Git & CI/CD</span>
+                            <span class="text-blue-600 font-bold">92%</span>
+                        </div>
+                        <div class="skill-bar bg-gray-200">
+                            <div class="skill-bar-fill" style="width: 92%"></div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">OpenAPI</span>
+                            <span class="text-blue-600 font-bold">85%</span>
+                        </div>
+                        <div class="skill-bar bg-gray-200">
+                            <div class="skill-bar-fill" style="width: 85%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-2xl p-8 shadow-lg">
+                <h3 class="text-2xl font-bold mb-6 text-center">Méthodologies & Approches</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="text-center p-4">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-blue-100 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-sync-alt text-blue-600 text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">Agile/Scrum</h4>
+                        <p class="text-gray-600">Développement itératif avec des sprints réguliers et des revues continues</p>
+                    </div>
+                    <div class="text-center p-4">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-green-100 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-file-contract text-green-600 text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">Contract-first API</h4>
+                        <p class="text-gray-600">Définition des contrats API avant l'implémentation pour une meilleure collaboration</p>
+                    </div>
+                    <div class="text-center p-4">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-purple-100 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-chart-line text-purple-600 text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">Clean Code & Tests</h4>
+                        <p class="text-gray-600">Code maintenable avec couverture de tests et revues de code systématiques</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projets Section -->
-    <section id="projets" class="py-16 bg-white">
+    <!-- Projets -->
+    <section id="projets" class="py-16">
         <div class="container mx-auto px-6">
-            <h2 class="section-title text-3xl font-bold">Mes Projets</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Projets Réalisés</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Explorez une sélection de mes projets techniques et professionnels</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Projet 1 -->
-                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg card-hover">
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 project-card group">
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-xl font-bold">backend-CRUD</h3>
-                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Java</span>
+                            <div>
+                                <span class="inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Java</span>
+                                <span class="inline-block px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-medium ml-2">Spring Boot</span>
+                            </div>
+                            <div class="text-gray-400">
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <span class="text-sm">Public</span>
+                            </div>
                         </div>
-                        <p class="text-gray-600 mb-4">API CRUD complète développée avec Spring Boot, implémentant des opérations de base sur une base de données.</p>
-                        <div class="text-sm text-gray-500 mb-4">
-                            <i class="far fa-clock mr-1"></i> Mis à jour le 28 Oct
+                        <h3 class="text-xl font-bold mb-3 group-hover:text-blue-600 transition-colors">backend-CRUD</h3>
+                        <p class="text-gray-600 mb-4">API REST complète avec Spring Boot implémentant toutes les opérations CRUD, validation des données et gestion des erreurs.</p>
+                        <div class="flex items-center text-gray-500 text-sm mb-4">
+                            <i class="far fa-clock mr-2"></i>
+                            <span>Mis à jour le 28 Oct</span>
                         </div>
-                        <div class="flex space-x-2">
-                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Spring Boot</span>
-                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">API REST</span>
-                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">MySQL</span>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="tech-tag px-3 py-1 rounded-full text-sm">REST API</span>
+                            <span class="tech-tag px-3 py-1 rounded-full text-sm">Spring Security</span>
+                            <span class="tech-tag px-3 py-1 rounded-full text-sm">JPA</span>
                         </div>
+                        <a href="#" class="text-blue-600 font-medium inline-flex items-center hover:text-blue-800">
+                            Voir le code <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
                     </div>
                 </div>
+                
                 <!-- Projet 2 -->
-                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg card-hover">
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 project-card group">
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-xl font-bold">frontend-CRUD</h3>
-                            <span class="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full">JavaScript</span>
+                            <div>
+                                <span class="inline-block px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">JavaScript</span>
+                                <span class="inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium ml-2">React</span>
+                            </div>
+                            <div class="text-gray-400">
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <span class="text-sm">Public</span>
+                            </div>
                         </div>
-                        <p class="text-gray-600 mb-4">Interface utilisateur React pour interagir avec l'API backend-CRUD, offrant une expérience utilisateur fluide et réactive.</p>
-                        <div class="text-sm text-gray-500 mb-4">
-                            <i class="far fa-clock mr-1"></i> Mis à jour le 28 Oct
+                        <h3 class="text-xl font-bold mb-3 group-hover:text-blue-600 transition-colors">frontend-CRUD</h3>
+                        <p class="text-gray-600 mb-4">Interface utilisateur React moderne pour interagir avec l'API backend, avec pagination, recherche et formulaires validés.</p>
+                        <div class="flex items-center text-gray-500 text-sm mb-4">
+                            <i class="far fa-clock mr-2"></i>
+                            <span>Mis à jour le 28 Oct</span>
                         </div>
-                        <div class="flex space-x-2">
-                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">React</span>
-                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Tailwind CSS</span>
-                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Axios</span>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="tech-tag px-3 py-1 rounded-full text-sm">React 18</span>
+                            <span class="tech-tag px-3 py-1 rounded-full text-sm">Tailwind CSS</span>
+                            <span class="tech-tag px-3 py-1 rounded-full text-sm">Axios</span>
                         </div>
+                        <a href="#" class="text-blue-600 font-medium inline-flex items-center hover:text-blue-800">
+                            Voir le code <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
                     </div>
                 </div>
+                
                 <!-- Projet 3 -->
-                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg card-hover">
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 project-card group">
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-xl font-bold">catalogue1</h3>
-                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Java</span>
+                            <div>
+                                <span class="inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Java</span>
+                                <span class="inline-block px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-medium ml-2">Spring Boot</span>
+                            </div>
+                            <div class="text-gray-400">
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <span class="text-sm">Public</span>
+                            </div>
                         </div>
-                        <p class="text-gray-600 mb-4">Application de gestion de catalogue avec interface administrateur et recherche avancée de produits.</p>
-                        <div class="text-sm text-gray-500 mb-4">
-                            <i class="far fa-clock mr-1"></i> Mis à jour le 8 Mar 2024
+                        <h3 class="text-xl font-bold mb-3 group-hover:text-blue-600 transition-colors">catalogue1</h3>
+                        <p class="text-gray-600 mb-4">Application complète de gestion de catalogue avec CRUD, recherche avancée, filtres et interface d'administration.</p>
+                        <div class="flex items-center text-gray-500 text-sm mb-4">
+                            <i class="far fa-clock mr-2"></i>
+                            <span>Mis à jour le 8 Mar 2024</span>
                         </div>
-                        <div class="flex space-x-2">
-                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Spring Boot</span>
-                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Thymeleaf</span>
-                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Bootstrap</span>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="tech-tag px-3 py-1 rounded-full text-sm">Thymeleaf</span>
+                            <span class="tech-tag px-3 py-1 rounded-full text-sm">Bootstrap</span>
+                            <span class="tech-tag px-3 py-1 rounded-full text-sm">MySQL</span>
                         </div>
+                        <a href="#" class="text-blue-600 font-medium inline-flex items-center hover:text-blue-800">
+                            Voir le code <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
                     </div>
                 </div>
-                <!-- Projet 4 (Microservices Spring Boot) -->
-                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg card-hover">
+                
+                <!-- Projet 4 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 project-card group">
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-xl font-bold">Microservices Spring Boot</h3>
-                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Java</span>
+                            <div>
+                                <span class="inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Java</span>
+                                <span class="inline-block px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium ml-2">Microservices</span>
+                            </div>
+                            <div class="text-gray-400">
+                                <i class="fas fa-briefcase text-blue-400"></i>
+                                <span class="text-sm">Professionnel</span>
+                            </div>
                         </div>
-                        <p class="text-gray-600 mb-4">Architecture microservices avec Spring Boot, Docker Compose et documentation OpenAPI/Swagger.</p>
-                        <div class="text-sm text-gray-500 mb-4">
-                            <i class="far fa-clock mr-1"></i> Expérience professionnelle
+                        <h3 class="text-xl font-bold mb-3 group-hover:text-blue-600 transition-colors">Architecture Microservices</h3>
+                        <p class="text-gray-600 mb-4">Système distribué avec Spring Boot, communication inter-services, discovery service et configuration centralisée.</p>
+                        <div class="flex items-center text-gray-500 text-sm mb-4">
+                            <i class="far fa-clock mr-2"></i>
+                            <span>Expérience professionnelle</span>
                         </div>
-                        <div class="flex space-x-2">
-                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Microservices</span>
-                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Docker</span>
-                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">OpenAPI</span>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="tech-tag px-3 py-1 rounded-full text-sm">Spring Cloud</span>
+                            <span class="tech-tag px-3 py-1 rounded-full text-sm">Docker</span>
+                            <span class="tech-tag px-3 py-1 rounded-full text-sm">API Gateway</span>
                         </div>
+                        <a href="#" class="text-blue-600 font-medium inline-flex items-center hover:text-blue-800">
+                            En savoir plus <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
                     </div>
                 </div>
-                <!-- Projet 5 (React + Tailwind Frontend) -->
-                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg card-hover">
+                
+                <!-- Projet 5 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 project-card group">
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-xl font-bold">Frontend React 18</h3>
-                            <span class="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full">JavaScript</span>
+                            <div>
+                                <span class="inline-block px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">JavaScript</span>
+                                <span class="inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium ml-2">React</span>
+                            </div>
+                            <div class="text-gray-400">
+                                <i class="fas fa-briefcase text-blue-400"></i>
+                                <span class="text-sm">Professionnel</span>
+                            </div>
                         </div>
-                        <p class="text-gray-600 mb-4">Interface utilisateur moderne développée avec React 18 et Tailwind CSS pour une application web dynamique.</p>
-                        <div class="text-sm text-gray-500 mb-4">
-                            <i class="far fa-clock mr-1"></i> Expérience professionnelle
+                        <h3 class="text-xl font-bold mb-3 group-hover:text-blue-600 transition-colors">Frontend Dynamique</h3>
+                        <p class="text-gray-600 mb-4">Application React 18 avec Tailwind CSS, gestion d'état avancée, composants réutilisables et expérience utilisateur fluide.</p>
+                        <div class="flex items-center text-gray-500 text-sm mb-4">
+                            <i class="far fa-clock mr-2"></i>
+                            <span>Expérience professionnelle</span>
                         </div>
-                        <div class="flex space-x-2">
-                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">React 18</span>
-                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Tailwind CSS</span>
-                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Hooks API</span>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="tech-tag px-3 py-1 rounded-full text-sm">Context API</span>
+                            <span class="tech-tag px-3 py-1 rounded-full text-sm">React Router</span>
+                            <span class="tech-tag px-3 py-1 rounded-full text-sm">Responsive Design</span>
                         </div>
+                        <a href="#" class="text-blue-600 font-medium inline-flex items-center hover:text-blue-800">
+                            En savoir plus <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
                     </div>
                 </div>
-                <!-- Projet 6 (API Contract-first) -->
-                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg card-hover">
+                
+                <!-- Projet 6 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 project-card group">
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-xl font-bold">Contract-first API</h3>
-                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">OpenAPI</span>
+                            <div>
+                                <span class="inline-block px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">OpenAPI</span>
+                                <span class="inline-block px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-medium ml-2">Documentation</span>
+                            </div>
+                            <div class="text-gray-400">
+                                <i class="fas fa-briefcase text-blue-400"></i>
+                                <span class="text-sm">Professionnel</span>
+                            </div>
                         </div>
-                        <p class="text-gray-600 mb-4">Développement d'API suivant l'approche "Contract-first" avec génération automatique de documentation Swagger.</p>
-                        <div class="text-sm text-gray-500 mb-4">
-                            <i class="far fa-clock mr-1"></i> Expérience professionnelle
+                        <h3 class="text-xl font-bold mb-3 group-hover:text-blue-600 transition-colors">Contract-first API</h3>
+                        <p class="text-gray-600 mb-4">Approche "Contract-first" avec OpenAPI/Swagger pour générer automatiquement la documentation et les clients API.</p>
+                        <div class="flex items-center text-gray-500 text-sm mb-4">
+                            <i class="far fa-clock mr-2"></i>
+                            <span>Expérience professionnelle</span>
                         </div>
-                        <div class="flex space-x-2">
-                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">OpenAPI</span>
-                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Swagger</span>
-                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">API Design</span>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="tech-tag px-3 py-1 rounded-full text-sm">Swagger UI</span>
+                            <span class="tech-tag px-3 py-1 rounded-full text-sm">Validation</span>
+                            <span class="tech-tag px-3 py-1 rounded-full text-sm">Code Generation</span>
                         </div>
+                        <a href="#" class="text-blue-600 font-medium inline-flex items-center hover:text-blue-800">
+                            En savoir plus <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -327,46 +682,94 @@
     </section>
 
     <!-- Expérience & Formation -->
-    <section id="experience" class="py-16 bg-gray-50">
+    <section id="experience" class="py-16 bg-gradient-to-b from-blue-50 to-white">
         <div class="container mx-auto px-6">
-            <h2 class="section-title text-3xl font-bold">Expérience & Formation</h2>
-            <div class="grid md:grid-cols-2 gap-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Parcours Professionnel</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Mon parcours académique et mes expériences professionnelles</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
                 <!-- Expérience -->
                 <div>
-                    <h3 class="text-2xl font-semibold mb-6 text-primary">Expérience Professionnelle</h3>
-                    <div class="relative border-l-2 border-primary pl-8 pb-8">
-                        <div class="absolute left-[-9px] top-0 w-4 h-4 bg-primary rounded-full"></div>
-                        <div class="mb-2">
-                            <h4 class="text-xl font-bold">Développeur junior</h4>
-                            <p class="text-gray-600">Yaatout Sari, Ziguinchor | août 2024 – septembre 2025</p>
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <div class="flex items-center mb-8">
+                            <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-briefcase text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold">Expérience</h3>
                         </div>
-                        <ul class="list-disc pl-5 text-gray-700 space-y-2">
-                            <li>Développement de microservices Spring Boot</li>
-                            <li>Génération automatique de documentation avec OpenAPI/Swagger</li>
-                            <li>Implémentation de frontend dynamique avec React 18 et Tailwind CSS</li>
-                            <li>Utilisation de MySQL pour la persistance des données</li>
-                            <li>Déploiement de conteneurs avec Docker Compose</li>
-                        </ul>
+                        
+                        <div class="timeline-item mb-8">
+                            <div class="bg-blue-50 rounded-xl p-5 border-l-4 border-blue-500">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-xl font-bold">Développeur junior</h4>
+                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">2024 - 2025</span>
+                                </div>
+                                <p class="text-gray-600 mb-3">Yaatout Sari, Ziguinchor</p>
+                                <ul class="text-gray-700 space-y-2">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2 flex-shrink-0"></i>
+                                        <span>Développement de microservices Spring Boot</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2 flex-shrink-0"></i>
+                                        <span>Génération automatique de documentation OpenAPI/Swagger</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2 flex-shrink-0"></i>
+                                        <span>Implémentation frontend avec React 18 et Tailwind CSS</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2 flex-shrink-0"></i>
+                                        <span>Déploiement avec Docker Compose</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                
                 <!-- Formation -->
                 <div>
-                    <h3 class="text-2xl font-semibold mb-6 text-primary">Formation</h3>
-                    <div class="relative border-l-2 border-primary pl-8 pb-8">
-                        <div class="absolute left-[-9px] top-0 w-4 h-4 bg-primary rounded-full"></div>
-                        <div class="mb-6">
-                            <h4 class="text-xl font-bold">Master en informatique spécialité Génie Logiciel</h4>
-                            <p class="text-gray-600">Université Assane Seck, Ziguinchor | 2022 - 2024</p>
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <div class="flex items-center mb-8">
+                            <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-blue-500 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-graduation-cap text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold">Formation</h3>
                         </div>
-                        <div class="absolute left-[-9px] top-28 w-4 h-4 bg-primary rounded-full"></div>
-                        <div class="mb-6">
-                            <h4 class="text-xl font-bold">Licence en informatique</h4>
-                            <p class="text-gray-600">Université Assane Seck, Ziguinchor | 2021 - 2022</p>
-                        </div>
-                        <div class="absolute left-[-9px] top-56 w-4 h-4 bg-primary rounded-full"></div>
-                        <div>
-                            <h4 class="text-xl font-bold">Baccalauréat S2</h4>
-                            <p class="text-gray-600">Lycée de Mbao, Dakar | 2017 - 2018</p>
+                        
+                        <div class="space-y-6">
+                            <div class="timeline-item">
+                                <div class="bg-green-50 rounded-xl p-5 border-l-4 border-green-500">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h4 class="text-xl font-bold">Master en Génie Logiciel</h4>
+                                        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">2022 - 2024</span>
+                                    </div>
+                                    <p class="text-gray-600">Université Assane Seck, Ziguinchor</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="bg-purple-50 rounded-xl p-5 border-l-4 border-purple-500">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h4 class="text-xl font-bold">Licence en Informatique</h4>
+                                        <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">2021 - 2022</span>
+                                    </div>
+                                    <p class="text-gray-600">Université Assane Seck, Ziguinchor</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="bg-yellow-50 rounded-xl p-5 border-l-4 border-yellow-500">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h4 class="text-xl font-bold">Baccalauréat S2</h4>
+                                        <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">2017 - 2018</span>
+                                    </div>
+                                    <p class="text-gray-600">Lycée de Mbao, Dakar</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -375,72 +778,82 @@
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="py-16 bg-white">
+    <section id="contact" class="py-16">
         <div class="container mx-auto px-6">
-            <h2 class="section-title text-3xl font-bold">Contact</h2>
-            <div class="max-w-3xl mx-auto">
-                <div class="grid md:grid-cols-2 gap-10">
-                    <div>
-                        <h3 class="text-2xl font-semibold mb-6">Restons en contact</h3>
-                        <p class="text-gray-700 mb-8">Je suis ouvert aux opportunités de collaboration, aux projets innovants ou simplement à un échange sur les technologies.</p>
-                        <div class="space-y-6">
-                            <div class="flex items-center">
-                                <div class="bg-primary text-white p-3 rounded-full mr-4">
-                                    <i class="fas fa-phone"></i>
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Travaillons ensemble</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Je suis ouvert aux opportunités de collaboration et aux projets innovants</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-gradient-to-br from-white to-blue-50 rounded-3xl shadow-2xl overflow-hidden">
+                    <div class="grid md:grid-cols-2">
+                        <div class="p-8 md:p-12">
+                            <h3 class="text-2xl font-bold mb-6">Contactez-moi</h3>
+                            <div class="space-y-6">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 rounded-full gradient-bg flex items-center justify-center mr-4">
+                                        <i class="fas fa-envelope text-white"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold">Email</p>
+                                        <a href="mailto:martialmauricediatta@gmail.com" class="text-gray-600 hover:text-blue-600">martialmauricediatta@gmail.com</a>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p class="font-semibold">Téléphone</p>
-                                    <p class="text-gray-600">+221 78 531 32 92</p>
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center mr-4">
+                                        <i class="fas fa-phone text-white"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold">Téléphone</p>
+                                        <p class="text-gray-600">+221 78 531 32 92</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center mr-4">
+                                        <i class="fab fa-linkedin-in text-white"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold">LinkedIn</p>
+                                        <a href="https://linkedin.com/martialmauricediatta" target="_blank" class="text-gray-600 hover:text-blue-600">linkedin.com/martialmauricediatta</a>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="flex items-center">
-                                <div class="bg-primary text-white p-3 rounded-full mr-4">
-                                    <i class="fas fa-envelope"></i>
+                            
+                            <div class="mt-12">
+                                <h4 class="font-bold text-lg mb-4">Disponible pour</h4>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="bg-white p-4 rounded-xl shadow-sm text-center">
+                                        <i class="fas fa-laptop-code text-blue-500 text-xl mb-2"></i>
+                                        <p class="font-medium">Développement Full-Stack</p>
+                                    </div>
+                                    <div class="bg-white p-4 rounded-xl shadow-sm text-center">
+                                        <i class="fas fa-cloud text-green-500 text-xl mb-2"></i>
+                                        <p class="font-medium">Architecture Microservices</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p class="font-semibold">Email</p>
-                                    <p class="text-gray-600">martialmauricediatta@gmail.com</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center">
-                                <div class="bg-primary text-white p-3 rounded-full mr-4">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                </div>
-                                <div>
-                                    <p class="font-semibold">Localisation</p>
-                                    <p class="text-gray-600">Ziguinchor, Sénégal</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-8 flex space-x-4">
-                            <a href="https://linkedin.com/martialmauricediatta" target="_blank" class="bg-blue-700 text-white p-3 rounded-full hover:bg-blue-800">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                            <a href="mailto:martialmauricediatta@gmail.com" class="bg-gray-800 text-white p-3 rounded-full hover:bg-gray-900">
-                                <i class="fas fa-envelope"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="text-2xl font-semibold mb-6">Disponible pour</h3>
-                        <div class="space-y-4">
-                            <div class="border border-gray-300 rounded-lg p-4 hover:border-primary transition">
-                                <h4 class="font-bold text-lg mb-2">💼 Emploi Full-Stack</h4>
-                                <p class="text-gray-600">Développement d'applications web complètes, architectures microservices</p>
-                            </div>
-                            <div class="border border-gray-300 rounded-lg p-4 hover:border-primary transition">
-                                <h4 class="font-bold text-lg mb-2">🚀 Projets Innovants</h4>
-                                <p class="text-gray-600">Collaboration sur des projets tech à fort impact</p>
-                            </div>
-                            <div class="border border-gray-300 rounded-lg p-4 hover:border-primary transition">
-                                <h4 class="font-bold text-lg mb-2">🤝 Consultation Technique</h4>
-                                <p class="text-gray-600">Architecture, DevOps, bonnes pratiques de développement</p>
                             </div>
                         </div>
-                        <div class="mt-8">
-                            <a href="cv%20emploi.pdf" target="_blank" class="inline-flex items-center bg-primary text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
-                                <i class="fas fa-file-pdf mr-2"></i> Voir mon CV complet
+                        <div class="bg-gradient-to-br from-blue-600 to-purple-600 p-8 md:p-12 text-white">
+                            <h3 class="text-2xl font-bold mb-6">Téléchargez mon CV</h3>
+                            <p class="mb-8 opacity-90">Consultez mon CV complet pour plus de détails sur mes compétences et expériences.</p>
+                            <a href="cv%20emploi.pdf" target="_blank" class="inline-flex items-center bg-white text-blue-600 px-6 py-3 rounded-lg font-bold hover:bg-blue-50 transition-colors">
+                                <i class="fas fa-download mr-3"></i>Télécharger le CV (PDF)
                             </a>
+                            <div class="mt-12">
+                                <h4 class="font-bold text-lg mb-6">Réseaux sociaux</h4>
+                                <div class="flex space-x-4">
+                                    <a href="https://linkedin.com/martialmauricediatta" target="_blank" class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </a>
+                                    <a href="https://github.com/MartialMauriceDiatta" target="_blank" class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="mailto:martialmauricediatta@gmail.com" class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                                        <i class="fas fa-envelope"></i>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -449,23 +862,28 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white py-8">
+    <footer class="bg-dark text-white py-12">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-4 md:mb-0">
-                    <h3 class="text-2xl font-bold">Martial Maurice DIATTA</h3>
-                    <p class="text-gray-300">Développeur Full-Stack & Architecte Microservices</p>
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center mr-3">
+                            <span class="text-white font-bold">MD</span>
+                        </div>
+                        <h3 class="text-2xl font-bold">Martial DIATTA</h3>
+                    </div>
+                    <p class="text-gray-400">Développeur Full-Stack & Architecte Microservices</p>
                 </div>
-                <div class="text-center md:text-right">
-                    <p class="text-gray-300">© 2024 Tous droits réservés</p>
-                    <p class="text-gray-400">Portfolio développé avec HTML, Tailwind CSS et passion</p>
+                <div class="text-center">
+                    <p class="text-gray-400 mb-4">© 2024 Martial Maurice DIATTA. Tous droits réservés.</p>
+                    <p class="text-gray-500 text-sm">Ziguinchor, Sénégal</p>
                 </div>
             </div>
         </div>
     </footer>
 
     <!-- Back to top button -->
-    <button id="backToTop" class="fixed bottom-6 right-6 bg-primary text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition opacity-0">
+    <button id="backToTop" class="fixed bottom-8 right-8 w-12 h-12 gradient-bg text-white rounded-full shadow-lg hover:shadow-xl transition-all opacity-0 transform translate-y-10">
         <i class="fas fa-arrow-up"></i>
     </button>
 
@@ -474,12 +892,12 @@
         const backToTopButton = document.getElementById('backToTop');
         
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTopButton.classList.remove('opacity-0');
-                backToTopButton.classList.add('opacity-100');
+            if (window.scrollY > 500) {
+                backToTopButton.classList.remove('opacity-0', 'translate-y-10');
+                backToTopButton.classList.add('opacity-100', 'translate-y-0');
             } else {
-                backToTopButton.classList.remove('opacity-100');
-                backToTopButton.classList.add('opacity-0');
+                backToTopButton.classList.remove('opacity-100', 'translate-y-0');
+                backToTopButton.classList.add('opacity-0', 'translate-y-10');
             }
         });
         
@@ -487,14 +905,30 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
         
+        // Animate skill bars on scroll
+        const animateSkills = () => {
+            const skillBars = document.querySelectorAll('.skill-bar-fill');
+            skillBars.forEach(bar => {
+                const rect = bar.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    bar.style.width = bar.style.width;
+                }
+            });
+        };
+        
+        // Initialize on load and scroll
+        window.addEventListener('load', animateSkills);
+        window.addEventListener('scroll', animateSkills);
+        
         // Smooth scrolling for navigation links
-        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
+                if(this.getAttribute('href') === '#') return;
+                
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
                 const targetElement = document.querySelector(targetId);
+                
                 if(targetElement) {
                     window.scrollTo({
                         top: targetElement.offsetTop - 80,
@@ -502,6 +936,11 @@
                     });
                 }
             });
+        });
+        
+        // Mobile menu toggle (simplified version)
+        document.querySelector('button.md\\:hidden').addEventListener('click', () => {
+            alert('Menu mobile - À implémenter avec un menu déroulant complet');
         });
     </script>
 </body>

@@ -1,1 +1,508 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Martial Maurice DIATTA - Portfolio Développeur Full-Stack</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        dark: '#1f2937',
+                        light: '#f9fafb'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: #3b82f6;
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-light text-dark font-inter">
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white shadow-md py-4">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold text-primary">Martial Maurice DIATTA</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#accueil" class="hover:text-primary transition">Accueil</a>
+                <a href="#profil" class="hover:text-primary transition">Profil</a>
+                <a href="#competences" class="hover:text-primary transition">Compétences</a>
+                <a href="#projets" class="hover:text-primary transition">Projets</a>
+                <a href="#experience" class="hover:text-primary transition">Expérience</a>
+                <a href="#contact" class="hover:text-primary transition">Contact</a>
+            </div>
+            <a href="cv%20emploi.pdf" target="_blank" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                <i class="fas fa-download mr-2"></i>Télécharger CV
+            </a>
+        </div>
+    </nav>
 
+    <!-- Hero Section -->
+    <section id="accueil" class="py-20 bg-gradient-to-r from-blue-50 to-white">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Martial Maurice DIATTA</h1>
+                <h2 class="text-2xl text-primary mb-6">Développeur Full-Stack & Architecte Microservices</h2>
+                <p class="text-gray-600 mb-8 text-lg">Je conçois des solutions logicielles performantes, évolutives et sécurisées, en adoptant les méthodes agiles. Passionné par les nouvelles technologies et les projets à fort impact.</p>
+                <div class="flex space-x-4">
+                    <a href="#contact" class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">Me contacter</a>
+                    <a href="#projets" class="border border-primary text-primary px-6 py-3 rounded-lg hover:bg-primary hover:text-white transition">Voir mes projets</a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-8 border-white shadow-2xl">
+                    <img src="profil.jpeg" alt="Martial Maurice DIATTA" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profil Section -->
+    <section id="profil" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title text-3xl font-bold">Profil</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <p class="text-gray-700 mb-6">Développeur full-stack passionné, avec une spécialisation en architecture microservices et développement web. Je maîtrise les technologies modernes frontend et backend pour créer des applications robustes et scalables.</p>
+                    <p class="text-gray-700 mb-6">Mon objectif est de contribuer à des projets innovants qui ont un impact réel, tout en continuant à apprendre et à évoluer dans l'écosystème du développement logiciel.</p>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-map-marker-alt text-primary mr-3"></i>
+                        <span>Ziguinchor, Sénégal</span>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-envelope text-primary mr-3"></i>
+                        <span>martialmauricediatta@gmail.com</span>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-phone text-primary mr-3"></i>
+                        <span>+221 78 531 32 92</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fab fa-linkedin text-primary mr-3"></i>
+                        <a href="https://linkedin.com/martialmauricediatta" target="_blank" class="hover:text-primary">linkedin.com/martialmauricediatta</a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Langues</h3>
+                    <div class="mb-6">
+                        <div class="flex justify-between mb-1">
+                            <span>Français</span>
+                            <span>Natif</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-primary h-2 rounded-full" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <div class="flex justify-between mb-1">
+                            <span>Anglais</span>
+                            <span>Intermediaire</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-primary h-2 rounded-full" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Centres d'intérêt</h3>
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <li>Nouvelles technologies dans le développement logiciel</li>
+                        <li>Lecture de livres sur les nouvelles technologies</li>
+                        <li>Architecture microservices et DevOps</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compétences Section -->
+    <section id="competences" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title text-3xl font-bold">Compétences Techniques</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Technologies web -->
+                <div class="bg-white p-6 rounded-xl shadow-md card-hover">
+                    <div class="text-primary text-3xl mb-4">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Technologies Web</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>HTML & CSS</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Angular</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>React 18</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Tailwind CSS</li>
+                    </ul>
+                </div>
+                <!-- Backend & Bases de données -->
+                <div class="bg-white p-6 rounded-xl shadow-md card-hover">
+                    <div class="text-primary text-3xl mb-4">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Backend & BD</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Java / Spring Boot</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Python</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>MySQL</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>MongoDB</li>
+                    </ul>
+                </div>
+                <!-- Outils -->
+                <div class="bg-white p-6 rounded-xl shadow-md card-hover">
+                    <div class="text-primary text-3xl mb-4">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Outils & DevOps</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Git, Docker, Jenkins</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>CI/CD, DevOps</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>OpenAPI, SonarQube</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Jira, Agile/Scrum</li>
+                    </ul>
+                </div>
+                <!-- Méthodologies -->
+                <div class="bg-white p-6 rounded-xl shadow-md card-hover">
+                    <div class="text-primary text-3xl mb-4">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Méthodologies</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Architecture Microservices</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Développement Contract-first API</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Agile/Scrum</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Clean Code & Tests</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projets Section -->
+    <section id="projets" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title text-3xl font-bold">Mes Projets</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Projet 1 -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg card-hover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold">backend-CRUD</h3>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Java</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">API CRUD complète développée avec Spring Boot, implémentant des opérations de base sur une base de données.</p>
+                        <div class="text-sm text-gray-500 mb-4">
+                            <i class="far fa-clock mr-1"></i> Mis à jour le 28 Oct
+                        </div>
+                        <div class="flex space-x-2">
+                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Spring Boot</span>
+                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">API REST</span>
+                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">MySQL</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Projet 2 -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg card-hover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold">frontend-CRUD</h3>
+                            <span class="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full">JavaScript</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Interface utilisateur React pour interagir avec l'API backend-CRUD, offrant une expérience utilisateur fluide et réactive.</p>
+                        <div class="text-sm text-gray-500 mb-4">
+                            <i class="far fa-clock mr-1"></i> Mis à jour le 28 Oct
+                        </div>
+                        <div class="flex space-x-2">
+                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">React</span>
+                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Tailwind CSS</span>
+                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Axios</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Projet 3 -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg card-hover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold">catalogue1</h3>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Java</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Application de gestion de catalogue avec interface administrateur et recherche avancée de produits.</p>
+                        <div class="text-sm text-gray-500 mb-4">
+                            <i class="far fa-clock mr-1"></i> Mis à jour le 8 Mar 2024
+                        </div>
+                        <div class="flex space-x-2">
+                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Spring Boot</span>
+                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Thymeleaf</span>
+                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Bootstrap</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Projet 4 (Microservices Spring Boot) -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg card-hover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold">Microservices Spring Boot</h3>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Java</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Architecture microservices avec Spring Boot, Docker Compose et documentation OpenAPI/Swagger.</p>
+                        <div class="text-sm text-gray-500 mb-4">
+                            <i class="far fa-clock mr-1"></i> Expérience professionnelle
+                        </div>
+                        <div class="flex space-x-2">
+                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Microservices</span>
+                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Docker</span>
+                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">OpenAPI</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Projet 5 (React + Tailwind Frontend) -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg card-hover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold">Frontend React 18</h3>
+                            <span class="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full">JavaScript</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Interface utilisateur moderne développée avec React 18 et Tailwind CSS pour une application web dynamique.</p>
+                        <div class="text-sm text-gray-500 mb-4">
+                            <i class="far fa-clock mr-1"></i> Expérience professionnelle
+                        </div>
+                        <div class="flex space-x-2">
+                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">React 18</span>
+                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Tailwind CSS</span>
+                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Hooks API</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Projet 6 (API Contract-first) -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg card-hover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold">Contract-first API</h3>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">OpenAPI</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Développement d'API suivant l'approche "Contract-first" avec génération automatique de documentation Swagger.</p>
+                        <div class="text-sm text-gray-500 mb-4">
+                            <i class="far fa-clock mr-1"></i> Expérience professionnelle
+                        </div>
+                        <div class="flex space-x-2">
+                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">OpenAPI</span>
+                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Swagger</span>
+                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">API Design</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expérience & Formation -->
+    <section id="experience" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title text-3xl font-bold">Expérience & Formation</h2>
+            <div class="grid md:grid-cols-2 gap-10">
+                <!-- Expérience -->
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6 text-primary">Expérience Professionnelle</h3>
+                    <div class="relative border-l-2 border-primary pl-8 pb-8">
+                        <div class="absolute left-[-9px] top-0 w-4 h-4 bg-primary rounded-full"></div>
+                        <div class="mb-2">
+                            <h4 class="text-xl font-bold">Développeur junior</h4>
+                            <p class="text-gray-600">Yaatout Sari, Ziguinchor | août 2024 – septembre 2025</p>
+                        </div>
+                        <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                            <li>Développement de microservices Spring Boot</li>
+                            <li>Génération automatique de documentation avec OpenAPI/Swagger</li>
+                            <li>Implémentation de frontend dynamique avec React 18 et Tailwind CSS</li>
+                            <li>Utilisation de MySQL pour la persistance des données</li>
+                            <li>Déploiement de conteneurs avec Docker Compose</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Formation -->
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6 text-primary">Formation</h3>
+                    <div class="relative border-l-2 border-primary pl-8 pb-8">
+                        <div class="absolute left-[-9px] top-0 w-4 h-4 bg-primary rounded-full"></div>
+                        <div class="mb-6">
+                            <h4 class="text-xl font-bold">Master en informatique spécialité Génie Logiciel</h4>
+                            <p class="text-gray-600">Université Assane Seck, Ziguinchor | 2022 - 2024</p>
+                        </div>
+                        <div class="absolute left-[-9px] top-28 w-4 h-4 bg-primary rounded-full"></div>
+                        <div class="mb-6">
+                            <h4 class="text-xl font-bold">Licence en informatique</h4>
+                            <p class="text-gray-600">Université Assane Seck, Ziguinchor | 2021 - 2022</p>
+                        </div>
+                        <div class="absolute left-[-9px] top-56 w-4 h-4 bg-primary rounded-full"></div>
+                        <div>
+                            <h4 class="text-xl font-bold">Baccalauréat S2</h4>
+                            <p class="text-gray-600">Lycée de Mbao, Dakar | 2017 - 2018</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title text-3xl font-bold">Contact</h2>
+            <div class="max-w-3xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-10">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-6">Restons en contact</h3>
+                        <p class="text-gray-700 mb-8">Je suis ouvert aux opportunités de collaboration, aux projets innovants ou simplement à un échange sur les technologies.</p>
+                        <div class="space-y-6">
+                            <div class="flex items-center">
+                                <div class="bg-primary text-white p-3 rounded-full mr-4">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold">Téléphone</p>
+                                    <p class="text-gray-600">+221 78 531 32 92</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="bg-primary text-white p-3 rounded-full mr-4">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold">Email</p>
+                                    <p class="text-gray-600">martialmauricediatta@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="bg-primary text-white p-3 rounded-full mr-4">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold">Localisation</p>
+                                    <p class="text-gray-600">Ziguinchor, Sénégal</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-8 flex space-x-4">
+                            <a href="https://linkedin.com/martialmauricediatta" target="_blank" class="bg-blue-700 text-white p-3 rounded-full hover:bg-blue-800">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="mailto:martialmauricediatta@gmail.com" class="bg-gray-800 text-white p-3 rounded-full hover:bg-gray-900">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-6">Disponible pour</h3>
+                        <div class="space-y-4">
+                            <div class="border border-gray-300 rounded-lg p-4 hover:border-primary transition">
+                                <h4 class="font-bold text-lg mb-2">💼 Emploi Full-Stack</h4>
+                                <p class="text-gray-600">Développement d'applications web complètes, architectures microservices</p>
+                            </div>
+                            <div class="border border-gray-300 rounded-lg p-4 hover:border-primary transition">
+                                <h4 class="font-bold text-lg mb-2">🚀 Projets Innovants</h4>
+                                <p class="text-gray-600">Collaboration sur des projets tech à fort impact</p>
+                            </div>
+                            <div class="border border-gray-300 rounded-lg p-4 hover:border-primary transition">
+                                <h4 class="font-bold text-lg mb-2">🤝 Consultation Technique</h4>
+                                <p class="text-gray-600">Architecture, DevOps, bonnes pratiques de développement</p>
+                            </div>
+                        </div>
+                        <div class="mt-8">
+                            <a href="cv%20emploi.pdf" target="_blank" class="inline-flex items-center bg-primary text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
+                                <i class="fas fa-file-pdf mr-2"></i> Voir mon CV complet
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-8">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-2xl font-bold">Martial Maurice DIATTA</h3>
+                    <p class="text-gray-300">Développeur Full-Stack & Architecte Microservices</p>
+                </div>
+                <div class="text-center md:text-right">
+                    <p class="text-gray-300">© 2024 Tous droits réservés</p>
+                    <p class="text-gray-400">Portfolio développé avec HTML, Tailwind CSS et passion</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <button id="backToTop" class="fixed bottom-6 right-6 bg-primary text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition opacity-0">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.remove('opacity-0');
+                backToTopButton.classList.add('opacity-100');
+            } else {
+                backToTopButton.classList.remove('opacity-100');
+                backToTopButton.classList.add('opacity-0');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
